@@ -1,1 +1,6 @@
+*.wav
+*.mp4
+
+.DS_Store
+.ipynb_checkpoints/
 data/
