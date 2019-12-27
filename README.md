@@ -1,8 +1,6 @@
-# Beeeep--
+# Beeeep--; 투빅스 9회 컨퍼런스 준비
 
-## 투빅스 9회 컨퍼런스 준비
-
-#### 폴더경로
+## 폴더경로
 
 ./data
 
@@ -16,7 +14,7 @@
 ./data/text
 - blahblah.txt
 
-#### process
+## process
 
 1224: prototype코드 작성
 * get_youtube_url.py - 플레이 리스트 링크로 전체 url 크롤링
