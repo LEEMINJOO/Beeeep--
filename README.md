@@ -22,4 +22,8 @@
 * video_to_text_outloop.ipython - **video_to_test.py와 연결해야함**
 * video_to_audio.py - 비디오를 오디오로 변환 후 자막 기반으로 clip하고 labeling
 
+1227: code refactoring
+* utils.py - 기존 분할된 코드 함수화
+* crawling.py - video_to_text.py 함수화
+* get_data.py - argument 로 동작 지정
  
