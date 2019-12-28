@@ -6,6 +6,7 @@ from moviepy.editor import *
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
+from tqdm import tqdm_notebook
 
 def make_dir(dir_):
     if not os.path.isdir(dir_):
@@ -135,7 +136,7 @@ def wave_to_image(audios_texts_length_dir):
     frame_length = 0.025
     frame_stride = 0.010
 
-    for audio in df.audio:
+    for audio in tqdm_notebook(df.audio):
         wav = audio
         file_dir, file_id = os.path.split(wav)
         name = file_id.split(".")[0]
