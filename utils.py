@@ -3,7 +3,10 @@ import pandas as pd
 import numpy as np
 from pytube import YouTube, Playlist
 from moviepy.editor import *
-
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
+from tqdm import tqdm_notebook
 
 def make_dir(dir_):
     if not os.path.isdir(dir_):
@@ -124,3 +127,27 @@ def labeling(df, audios_texts_length_dir):
                 l = int(input('Label: '))
             df['label'][i] = l
     df.to_csv(audios_texts_length_dir, index=False, encoding='ms949')
+    
+def wave_to_image(audios_texts_length_dir):
+    img_dir = os.path.join('.', 'data', 'image')
+    make_dir(img_dir)
+    df = pd.read_csv(audios_texts_length_dir, encoding='ms949')
+    crit_y = 926100
+    frame_length = 0.025
+    frame_stride = 0.010
+
+    for audio in tqdm_notebook(df.audio):
+        wav = audio
+        file_dir, file_id = os.path.split(wav)
+        name = file_id.split(".")[0]
+        save_path = os.path.join(img_dir, name)
+
+        y, sr = librosa.load(wav, sr=16000)
+        input_nfft = int(round(sr*frame_length))
+        input_stride = int(round(sr*frame_stride))
+
+        y = librosa.util.fix_length(y, crit_y)
+        S = librosa.feature.melspectrogram(y, sr=sr, n_mels=128) 
+        log_S = librosa.power_to_db(S, ref=np.max)
+
+        plt.imsave(save_path, log_S, cmap='gray')
