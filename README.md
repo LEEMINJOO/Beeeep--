@@ -14,5 +14,5 @@
 ./data/text
 - blahblah.txt
 
-
- 
+./data/image
+- blahblah_0.png #melspectrogram
