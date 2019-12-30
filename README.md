@@ -2,16 +2,16 @@
 
 ## 코드
 
-* 유튜브에서 음성 얻기
+유튜브에서 음성 얻기
 - get_data.py
 
-* 레이블링 기준으로 배경, 활성화, 그외 음성 나누기
+레이블링 기준으로 배경, 활성화, 그외 음성 나누기
 - audio_label_cliping.ipynb
 
-* 음성 합치고, train data 만들기
+음성 합치고, train data 만들기
 - make_train_by_overlay.ipynb
 
-* 학습
+학습
 - Trigger word detection.ipynb
 
 ## 폴더경로
