@@ -55,7 +55,6 @@ def create_training_data(background, activates, negatives, filename, kernel=15, 
     
     for random_activate in random_activates:
         background, segment_time = insert_audio_clip(background, random_activate, previous_segments)
-        segment_start, segment_end = segment_time
         y = insert_ones(y, segment_time=segment_time, total_ms=total_ms)
 
     number_of_negatives = np.random.randint(0, 3)
