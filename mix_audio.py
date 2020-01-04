@@ -23,8 +23,12 @@ def insert_audio_clip(background, audio_clip, previous_segments):
     segment_ms = len(audio_clip)
     segment_time = get_random_time_segment(segment_ms, total_ms)
 
+    count = 0 
     while is_overlapping(segment_time, previous_segments):
         segment_time = get_random_time_segment(segment_ms, total_ms)
+        count += 1
+        if count > 20 :
+            return background, None
 
     previous_segments.append(segment_time)
     new_background = background.overlay(audio_clip, position = segment_time[0])
@@ -55,7 +59,8 @@ def create_training_data(background, activates, negatives, filename, kernel=15, 
     
     for random_activate in random_activates:
         background, segment_time = insert_audio_clip(background, random_activate, previous_segments)
-        y = insert_ones(y, segment_time=segment_time, total_ms=total_ms)
+        if segment_time is not None:
+            y = insert_ones(y, segment_time=segment_time, total_ms=total_ms)
 
     number_of_negatives = np.random.randint(0, 4)
     random_indices = np.random.randint(len(negatives), size=number_of_negatives)
