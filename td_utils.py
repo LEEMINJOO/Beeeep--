@@ -1,23 +1,20 @@
 import os
-import matplotlib.pyplot as plt
 
 from pydub import AudioSegment
 import librosa
 import numpy as np
 
-def graph_spectrogram(wav_file, minus=True):
+def graph_spectrogram(wav_file, minus=True, nfft=2048, hop=512):
     rate, data = get_wav_info(wav_file)
-    nfft = 200 #2048 # 윈도우 길이
     fs = rate # frequency
-    nchannels = data.ndim
     
-    S = librosa.feature.melspectrogram(data, sr=fs, n_mels=128)#, n_fft=nfft, hop_length=80)#512)
+    S = librosa.feature.melspectrogram(data, sr=fs, n_mels=128, n_fft=nfft, hop_length=hop)
     log_S = librosa.power_to_db(S, ref=np.max)
     if not minus:
         return log_S
     
     data_minus = -data
-    S_minus = librosa.feature.melspectrogram(data_minus, sr=fs, n_mels=128)#, n_fft=nfft, hop_length=80)#512)
+    S_minus = librosa.feature.melspectrogram(data_minus, sr=fs, n_mels=128, n_fft=nfft, hop_length=hop)
     log_S_minus = librosa.power_to_db(S_minus, ref=np.max)
     return log_S, log_S_minus
 
