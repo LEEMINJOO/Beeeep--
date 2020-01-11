@@ -68,14 +68,18 @@ def main(url, idd=0):
     y = output_postprocessing(model.predict(X), 0.5)
     print(bcolors.OKGREEN + 'Finished Predict ! \n' + bcolors.ENDC)
 
-    make_beep_wav("tmp.wav", y[0], "./demo/result.wav")
-    videoclip = videoclip.set_audio(AudioFileClip("./demo/result.wav"))
+    make_beep_wav("tmp.wav", y[0], "./demo/result_{}.wav".format(idd))
+    videoclip = videoclip.set_audio(AudioFileClip("./demo/result_{}.wav".format(idd)))
     # videoclip.audio = AudioFileClip("result.wav")
     print(bcolors.OKGREEN + 'Result: shape ({}) , # of 1 ({})\n'.format(y.shape, np.count_nonzero(y)) + bcolors.ENDC)
     # Zanngu
     videoclip = videoclip.subclip(28, 34)
     # videoclip = videoclip.subclip(0, 30)
-    videoclip.write_videofile("./demo/result.mp4")
+    videoclip.write_videofile("./demo/result_{}.mp4".format(idd))
+
+    videoclip = VideoFileClip("tmp.mp4")
+    videoclip = videoclip.subclip(28, 34)
+    videoclip.write_videofile("./demo/origin_{}.mp4".format(idd))
 
     print(bcolors.OKGREEN + '\nNow you can check!!! ' + bcolors.ENDC)
 
@@ -84,18 +88,4 @@ if __name__ == '__main__':
     url = input('URL을 입력하세요: ')
     idd = int(input('ID: '))
     main(url, idd)
-    # Sinsagae
-    # url = 'https://www.youtube.com/watch?v=n6RCAIbSPBQ'
-    # ZZAngu
-    # url = 'https://www.youtube.com/watch?v=ymHbDFokS-g'
-    # Sinsagae
-    # url = 'https://www.youtube.com/watch?v=n6RCAIbSPBQ'
-    # ZZAngu
-    # url = 'https://www.youtube.com/watch?v=ymHbDFokS-g'
-    # Bangtan
-    # url = 'https://www.youtube.com/watch?v=1qa_-qvRFXo'
-    # url = 'https://www.youtube.com/watch?v=1qa_-qvRFXo'
-    # Daechidong Sibal
-    # url = "https://www.youtube.com/watch?v=BMn9AkqbZJY&list=PLinQkF7sA7ZD-YiRdHcYiSVSp312x20u1"
-    # url = "https://www.youtube.com/watch?v=7YCtYM686_s"
 
