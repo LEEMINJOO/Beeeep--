@@ -1,5 +1,8 @@
 # Beep--
 ### 제 9회 투빅스 컨퍼런스의 일환으로 진행된 프로젝트 입니다.
+[발표자료](http://www.datamarket.kr/xe/board_pdzw77/63632)  
+  
+[발표동영상](https://www.youtube.com/watch?v=n1BqCii2yVU)
 
 #### 1) 목표
     - 한국어 욕설 음성 필터링
